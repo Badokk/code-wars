@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PolaczCztery:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PolaczCztery_jar</output-path>
+    <root id="archive" name="PolaczCztery.jar">
+      <element id="module-output" name="PolaczCztery" />
+    </root>
+  </artifact>
+</component>

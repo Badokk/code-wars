@@ -1,0 +1,35 @@
+//
+//        printMap(gameMap, a, b);
+//        int pom = returnPositionY(1, gameMap, a);
+////        System.out.println(pom);
+////        System.out.println(pom - 1);
+//        placeToken(1,pom - 1,2, gameMap);
+//        result = checkLastTokenIfWin(1, pom - 1, gameMap);
+//        System.out.println(result);
+//        printMap(gameMap, a, b);
+//
+//        int pom2 = returnPositionY(1, gameMap, a);
+////        System.out.println(pom2);
+////        System.out.println(pom2 - 1);
+//        placeToken(1,pom2 - 1,2, gameMap);
+//        result = checkLastTokenIfWin(1, pom2 - 1, gameMap);
+//        System.out.println(result);
+//        printMap(gameMap, a, b);
+//
+//        int pom3 = returnPositionY(1, gameMap, a);
+////        System.out.println(pom3);
+////        System.out.println(pom3 - 1);
+//        placeToken(1,pom3 - 1,2, gameMap);
+//        result = checkLastTokenIfWin(1, pom3 - 1, gameMap);
+//        System.out.println(result);
+//        printMap(gameMap, a, b);
+//
+//        int pom4 = returnPositionY(1, gameMap, a);
+////        System.out.println(pom4);
+////        System.out.println(pom4 - 1);
+//        placeToken(1,pom4 - 1,2, gameMap);
+//        result = checkLastTokenIfWin(1, pom4 - 1, gameMap);
+//        System.out.println(result);
+//
+//
+//        printMap(gameMap, a, b);
