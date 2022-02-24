@@ -1,4 +1,6 @@
-//
+// What is this file for?
+
+
 //        printMap(gameMap, a, b);
 //        int pom = returnPositionY(1, gameMap, a);
 ////        System.out.println(pom);
