@@ -5,8 +5,6 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
 
-//CONTROLER
-
         Frame f = new Frame("Demo");
         f.setLayout(new FlowLayout());
         f.setSize(200, 200);

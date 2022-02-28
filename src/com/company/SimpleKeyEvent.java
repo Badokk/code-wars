@@ -5,17 +5,15 @@ import java.awt.event.KeyListener;
 
 public class SimpleKeyEvent implements KeyListener {
     //MAP
-    int a;
-    int b;
+    int height = 7;
+    int width = 9;
     int[][] gameMap;
     int posY;
     int posX;
     int player;
 
     SimpleKeyEvent(){
-        a = 7;
-        b = 9;
-        gameMap = createMap(a, b);
+        gameMap = createMap(height, width);
         player = 1;
         // Pamietac, ze Y liczymy od 0, a X od 1
         posY = 0;
@@ -43,14 +41,14 @@ public class SimpleKeyEvent implements KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 
-            posY = returnPositionY(posX, gameMap, a);
+            posY = returnPositionY(posX, gameMap, height);
             placeToken(posX, posY, player, gameMap);
             if(checkLastTokenIfWin(posX, posY, gameMap)){
                 System.out.print("Gracz " + player + " wygral!");
                 System.exit(0);
             }
             player = changePlayer(player);
-            printMap(gameMap, a, b);
+            printMap(gameMap, height, width);
             posX = 1;
         }
     }
