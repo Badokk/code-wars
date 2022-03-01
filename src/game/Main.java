@@ -1,4 +1,4 @@
-package com.company;
+package game;
 
 import java.awt.*;
 
@@ -13,7 +13,7 @@ public class Main {
         f.add(l);
         f.setVisible(true);
 
-        SimpleKeyEvent simpleKeyEvent = new SimpleKeyEvent();
+        GameController simpleKeyEvent = new GameController();
 
         f.addKeyListener(simpleKeyEvent);
     }
