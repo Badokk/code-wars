@@ -13,9 +13,11 @@ public class Main {
         f.add(l);
         f.setVisible(true);
 
-        GameController simpleKeyEvent = new GameController();
+        GameMap gameMap = new GameMap();
 
-        f.addKeyListener(simpleKeyEvent);
+        GameController gameController = new GameController(gameMap);
+
+        f.addKeyListener(gameController);
     }
 }
 

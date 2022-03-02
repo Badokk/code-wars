@@ -7,6 +7,7 @@ public enum GameToken {
     PADDING(3);
 
     public final int value;
+
     GameToken(int value) {
         this.value = value;
     }
