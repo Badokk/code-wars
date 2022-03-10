@@ -17,7 +17,7 @@ public class GameController implements KeyListener {
         this.gameMap = gameMap;
         player = PLAYER_ONE.value;
         posX = startXPosition;
-        System.out.println("Ruch gracza " + player);
+        refreshScreen(posX);
     }
 
     @Override
@@ -28,9 +28,11 @@ public class GameController implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             posX = movePosX(posX, -changeXPos);
+            refreshScreen(posX);
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             posX = movePosX(posX, +changeXPos);
+            refreshScreen(posX);
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             executeTurn(player);
@@ -51,7 +53,6 @@ public class GameController implements KeyListener {
         if (newXpos > 7) {
             newXpos = 1;
         }
-        System.out.print(newXpos); //todo cleaning and printing map after every change
         return newXpos;
     }
 
@@ -70,9 +71,26 @@ public class GameController implements KeyListener {
             System.out.print("Gracz " + player + " wygral!");
             System.exit(0);
         }
-        gameMap.printMapWithoutPadding();
         posX = startXPosition;
-        System.out.println("Ruch gracza " + player);
+        refreshScreen(posX);
+    }
 
+    public void refreshScreen(int position) {
+        gameMap.clearConsole();
+        System.out.println("Ruch gracza " + player);
+        printPlayerMoves(position);
+        gameMap.printMapWithoutPadding();
+    }
+
+    public void printPlayerMoves(int position) {
+        System.out.print("|");
+        for (int i = 1; i <= 7; i++) {
+            if (i == position) {
+                System.out.print("v|");
+            } else {
+                System.out.print("_|");
+            }
+        }
+        System.out.println();
     }
 }

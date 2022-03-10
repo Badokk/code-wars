@@ -1,5 +1,7 @@
 package game;
 
+import java.io.IOException;
+
 import static game.GameToken.*;
 
 public class GameMap {
@@ -112,5 +114,14 @@ public class GameMap {
         return true;
     }
 
+    public void clearConsole() {
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
 }
