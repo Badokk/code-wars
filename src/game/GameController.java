@@ -7,16 +7,16 @@ import static game.GameToken.*;
 
 public class GameController implements KeyListener {
 
-    private static final int startXPosition = 1;
-    private static final int changeXPos = 1;
+    private static final int START_X_POSITION = 1;
+    private static final int CHANGE_X_POS = 1;
     private final GameMap gameMap;
     int posX;
-    int player;
+    GameToken player;
 
     GameController(GameMap gameMap) {
         this.gameMap = gameMap;
-        player = PLAYER_ONE.value;
-        posX = startXPosition;
+        player = PLAYER_ONE;
+        posX = START_X_POSITION;
         refreshScreen(posX);
     }
 
@@ -27,16 +27,21 @@ public class GameController implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            posX = movePosX(posX, -changeXPos);
+            posX = movePosX(posX, -CHANGE_X_POS);
             refreshScreen(posX);
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            posX = movePosX(posX, +changeXPos);
+            posX = movePosX(posX, +CHANGE_X_POS);
             refreshScreen(posX);
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            executeTurn(player);
-            player = changePlayer(player);
+            try {
+                executeTurn(player);
+            } catch (IndexOutOfBoundsException er) {
+                System.out.print("Nie da się włożyć w tej kolumnie więcej tokenów. Spróbuj innej.");
+                player = gameMap.changePlayer(player);
+            }
+            player = gameMap.changePlayer(player);
         }
     }
 
@@ -56,41 +61,26 @@ public class GameController implements KeyListener {
         return newXpos;
     }
 
-    public int changePlayer(int player) {
-        if (player == PLAYER_ONE.value) {
-            return PLAYER_TWO.value;
-        } else {
-            return PLAYER_ONE.value;
-        }
-    }
-
-    private void executeTurn(int player) {
+    private void executeTurn(GameToken player) {
         int posY = gameMap.returnPositionY(posX);
         gameMap.placeToken(posX, posY, player);
+        if (!gameMap.checkIfEmpty()) {
+            System.out.print("Brak wolnych miejsc. Koniec gry!");
+            System.exit(0);
+        }
         if (gameMap.checkLastTokenIfWin(posX, posY)) {
             System.out.print("Gracz " + player + " wygral!");
             System.exit(0);
         }
-        posX = startXPosition;
+        posX = START_X_POSITION;
         refreshScreen(posX);
     }
 
     public void refreshScreen(int position) {
         gameMap.clearConsole();
         System.out.println("Ruch gracza " + player);
-        printPlayerMoves(position);
+        gameMap.printPlayerMoves(position);
         gameMap.printMapWithoutPadding();
     }
 
-    public void printPlayerMoves(int position) {
-        System.out.print("|");
-        for (int i = 1; i <= 7; i++) {
-            if (i == position) {
-                System.out.print("v|");
-            } else {
-                System.out.print("_|");
-            }
-        }
-        System.out.println();
-    }
 }
